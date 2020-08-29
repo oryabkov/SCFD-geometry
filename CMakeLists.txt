@@ -6,13 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CUDA_STANDARD 11)
 set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 
-#for scfd 
-#TODO reorginize scfd - add include directory
-include_directories(contrib)
-include_directories(contrib/PQP_v1.3/include)
-link_directories(contrib/PQP_v1.3/lib)
-#Strange - but for now src is totally header only
-include_directories(src)
+include_directories(include)
 
 #TODO use per target
 include_directories(${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
@@ -61,8 +55,6 @@ endif()
 #add_test(NAME example_test COMMAND example)
 
 # END GTEST SECTION
-
-add_subdirectory(src)
 
 enable_testing()
 add_subdirectory(test)
