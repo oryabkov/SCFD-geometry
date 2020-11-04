@@ -39,6 +39,7 @@ public:
     static const int            dim = Dim;
 
     __DEVICE_TAG__                      vec() {}
+    /// ISSUE Still not sure about this static_cast here...
     template<typename... Args,
              class = typename std::enable_if<sizeof...(Args) == Dim>::type,
              class = typename std::enable_if<
@@ -46,7 +47,7 @@ public:
                                       std::is_convertible<Args,help_t<Args> >::value... 
                                   >::value
                               >::type>
-    __DEVICE_TAG__                      vec(const Args&... args) : d{args...}
+    __DEVICE_TAG__                      vec(const Args&... args) : d{static_cast<T>(args)...}
     {
     }
     __DEVICE_TAG__                      vec(const vec &v) = default;
